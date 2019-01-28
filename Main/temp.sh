@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-climate=$(sh climate-temp.sh)
-elevation=$(sh elevation-temp.sh)
-variation=$(sh temp-variation.sh)
+climate=$(bash climate-temp.sh)
+elevation=$(bash elevation-temp.sh)
+variation=$(bash temp-variation.sh)
 echo $(( climate + elevation + variation))
