@@ -77,5 +77,6 @@ case $climate in
 esac
 
 if $new; then
+    bash webhook.sh "Temperature range will last for $delay days." "Debug"
     echo "rm -f ${1}.tempVariation" | at now +$(( $delay * 2 - 1 )) minutes
 fi
