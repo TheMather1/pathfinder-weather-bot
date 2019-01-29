@@ -1,11 +1,7 @@
 #!/usr/bin/env bash
 climate=$(cat ${1}.climate)
 
-removeFile(){
-    at now +$delay days rm -f "$1.tempVariation"
-}
-
-if [ -e "$1.tempVariation" ]; then
+if [ -f "$1.tempVariation" ]; then
     d100=$(cat "$1.tempVariation")
     new=false
 else
@@ -81,5 +77,5 @@ case $climate in
 esac
 
 if $new; then
-    removeFile
+    echo "rm -f ${1}.tempVariation" | at now +$(( $delay * 2 - 1 )) minutes
 fi
