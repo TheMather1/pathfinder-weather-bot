@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-elevation=$(cat elevation.init)
+elevation=$(cat ${1}.elevation)
 case $elevation in
     "SEA LEVEL") echo 2;;
     HIGHLAND) echo 1;;

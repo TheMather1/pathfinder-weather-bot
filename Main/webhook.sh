@@ -1,2 +1,2 @@
 #!/usr/bin/env bash
-curl -d "content=$1" https://discordapp.com/api/webhooks/537913336680153098/hwoT2-9Jw3p-XXiXxEmZXY4uBMGmUHazsRXO2FPOsKML-cyH9PvaV_0M5bi9tXtZ35jB
+curl -d "content=$1" $(cat ${2}.url)

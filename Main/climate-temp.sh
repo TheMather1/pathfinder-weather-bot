@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-climate=$(cat climate.init)
+climate=$(cat ${1}.climate)
 season=$(bash season.sh)
 case ${season} in
     WINTER) case ${climate} in

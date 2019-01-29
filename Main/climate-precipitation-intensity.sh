@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-climate=$(cat climate.init)
+climate=$(cat ${1}.climate)
 case $climate in
     COLD) echo -1;;
     TEMPERATE) echo 0;;

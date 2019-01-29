@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-climate=$(cat climate.init)
+climate=$(cat ${1}.climate)
 
 removeFile(){
     at now +$delay days rm -f "$1.tempVariation"
