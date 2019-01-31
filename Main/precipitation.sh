@@ -270,4 +270,4 @@ else
     fi
 fi
 
-echo ${precipitation_string}
+echo "$(bash cloud-description.sh 3)\n${precipitation_string}"

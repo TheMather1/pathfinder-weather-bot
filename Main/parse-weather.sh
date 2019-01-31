@@ -8,7 +8,7 @@ if ${precipitation_bool}; then
     precipitation_string=$(bash precipitation.sh ${1} temp night_temp)
 else
     clouds=$(bash cloud-cover.sh)
-    temp=$(bash temp.sh ${1} clouds)
+    temp=$(bash temp.sh ${1} ${clouds})
     night_temp=$(( $temp - $(bash n-dice-x.sh 2 6) - 3))
 
     precipitation_string=$(bash cloud-description.sh ${clouds})
