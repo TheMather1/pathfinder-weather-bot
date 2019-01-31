@@ -5,7 +5,7 @@ if ${precipitation_bool}; then
     temp=$(bash temp.sh ${1} 0)
     night_temp=$(( $temp - $(bash n-dice-x.sh 2 6) - 3))
 
-    precipitation_string=$(bash precipitation.sh ${1} temp night_temp)
+    precipitation_string=$(bash precipitation.sh ${1} ${temp} ${night_temp})
 else
     clouds=$(bash cloud-cover.sh)
     temp=$(bash temp.sh ${1} ${clouds})
@@ -14,7 +14,7 @@ else
     precipitation_string=$(bash cloud-description.sh ${clouds})
 fi
 
-temp_string="**The temperature is $temp℉, and drops to $night_temp℉ at night.**"
+temp_string="**The temperature is ${temp}℉, and drops to ${night_temp}℉ at night.**"
 
 output_string="${temp_string}\n${precipitation_string}"
 
