@@ -16,11 +16,9 @@ fi
 
 temp_string="**The temperature is $temp℉, and drops to $night_temp℉ at night.**"
 
-output_string="${temp_string}
-${precipitation_string}"
+output_string="${temp_string}\n${precipitation_string}"
 
-bash webhook.sh "($( date --date='2 day' +'%d/%m/%Y' )):
-${output_string}" ${1}.forecastUrl
+bash webhook.sh "($( date --date='2 day' +'%d/%m/%Y' )):\n${output_string}" ${1}.forecastUrl
 echo bash webhook.sh \"${output_string}\" ${1}.url | at now + 4 minutes
 
 echo bash parse-weather.sh ${1} | at now +2 minutes

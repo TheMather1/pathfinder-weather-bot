@@ -32,7 +32,7 @@ function mediumRain(){
 
 function heavyRain(){
     time_string=$(bash time-string.sh ${1} ${2})
-    precipitation_string="**There is heavy rain ${time_string}.** (1/4 visibility. -6 penalty on Perception and Ranged Attacks. Extinguishes unprotected flames. )"
+    precipitation_string="**There is a rainstorm ${time_string}.** (1/4 visibility. -6 penalty on Perception and Ranged Attacks. Extinguishes unprotected flames. )"
 }
 
 function thunderstorm(){
