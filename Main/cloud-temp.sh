@@ -1,8 +1,8 @@
 #!/usr/bin/env bash
 season=$(bash season.sh)
 
-if [ ${1} -eq 3 ]; then
-    case $season in
+if [[ ${1} -eq 3 ]]; then
+    case ${season} in
         WINTER) echo 10;;
         SPRING) echo -10;;
         SUMMER) echo -10;;
