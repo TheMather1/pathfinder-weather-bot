@@ -56,10 +56,50 @@ function mediumSnow(){
 }
 
 function heavySnow(){
+    wind_strength=$(bash wind.sh)
+    if [[ ${wind_strength} -ge 3 ]]; then
+        if [[ $(bash n-dice-x.sh 1 100) -le 40 ]]; then
+            blizzard ${1} ${2}
+        else
+            snowstorm ${1} ${2}
+        fi
+    else
+        snowstorm ${1} ${2}
+    fi
+    if [[ $(bash n-dice-x.sh 1 100) -le 10 ]]; then
+        thundersnow
+    fi
+}
+
+function snowstorm(){
     time_string=$(bash time-string.sh ${1} ${2})
     precipitation_string="**There is a snowstorm ${time_string}.** (1/4 visibility. -6 penalty on Perception and Ranged Attacks. Extinguishes unprotected flames. Moving into a square requires 5 additional feet of movement.)"
 }
 
+function blizzard(){
+    if [[ $(bash n-dice-x.sh 1 100) -le 20 ]]; then
+        time_string=$(bash time-string.sh ${1} $(( ${1} + $(bash n-dice-x.sh 2 12) )) )
+    else
+        time_string=$(bash time-string.sh ${1} ${2})
+    fi
+    precipitation_string="**There is a blizzard ${time_string}.** (Can't see beyond 20 ft. -8 penalty on Perception and Ranged Attacks. Extinguishes unprotected flames. Moving into a square requires 5 additional feet of movement. Creatures treat the weather as 20℉ colder than its actual temperature.)"
+}
+
+function thundersnow(){
+    precipitation_string="${precipitation_string}\n**It is accompanied by a thundersnow.** (Lightning strikes a random unsheltered creature every hour.)"
+    if [[ $(bash n-dice-x.sh 1 100) -le 40 ]]; then
+        hail
+    fi
+    if [[ ${wind_strength} -eq 4 ]]; then
+        if [[ $(bash n-dice.x.sh 1 100) -le 10 ]]; then
+            snownado
+        fi
+    fi
+}
+
+function snownado(){
+    precipitation_string="${precipitation_string}\n**This generates a snownado.** (Perception and Ranged Attacks, including Siege Weapons and Evocation Spells, near the snownado are impossible. Nearby creatures of size Huge or smaller must succeed on a DC 20 Strength check to avoid being sucked in.)"
+}
 intensity=$(bash precipitation-intensity.sh ${1})
 frequency=$(bash precipitation-frequency.sh ${1})
 d6=$(bash n-dice-x.sh 1 6)

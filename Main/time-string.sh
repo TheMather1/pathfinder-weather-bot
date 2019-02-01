@@ -1,16 +1,12 @@
 #!/usr/bin/env bash
-start=${1}
-stop=${2}
-
-if [[ $(( ${stop} - ${start} )) -ge 24 ]]; then
+if [[ $(( ${1}-${2} )) -ge 24 ]]; then
     next_day=true
 else
     next_day=false
 fi
 
-if [[ ${stop} -gt 24 ]]; then
-    stop=$(( stop - 24 ))
-fi
+start=${1}
+stop=$(( ${2} % 24 ))
 
 if [[ ${start} -eq 24 ]]; then
     start="midnight"
