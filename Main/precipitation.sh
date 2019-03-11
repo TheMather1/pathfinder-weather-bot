@@ -125,11 +125,11 @@ function thundersnow(){
 }
 
 function snownado(){
-    precipitation_string="${precipitation_string}\n**This generates a snownado.** (Perception check and Ranged Attacks, including Siege Weapons and Evocation Spells, near the snownado are impossible. Nearby creatures of size Huge or smaller must succeed on a DC 20 Strength check to avoid being sucked in.)"
+    precipitation_string="${precipitation_string}\n**This generates a snownado.** (Perception checks and Ranged Attacks, including Siege Weapons and Evocation Spells, near the snownado are impossible. Nearby creatures of size Huge or smaller must succeed on a DC 20 Strength check to avoid being sucked in.)"
 }
 
 function tornado(){
-    precipitation_string="${precipitation_string}\n**This generates a tornado.** (Perception check and Ranged Attacks, including Siege Weapons and Evocation Spells, near the tornado are impossible. Nearby creatures of size Huge or smaller must succeed on a DC 20 Strength check to avoid being sucked in.)"
+    precipitation_string="${precipitation_string}\n**This generates a tornado.** (Perception checks and Ranged Attacks, including Siege Weapons and Evocation Spells, near the tornado are impossible. Nearby creatures of size Huge or smaller must succeed on a DC 20 Strength check to avoid being sucked in.)"
 }
 
 function hurricane(){
