@@ -47,6 +47,14 @@ function thunderstorm(){
     wind_string=$(bash wind-string.sh ${wind_strength})
     time_string=$(bash time-string.sh ${1} ${2})
     precipitation_string="**There is a thunderstorm ${time_string}.** (1/4 visibility. -6 penalty on Perception and Ranged Attacks. Extinguishes unprotected flames. )"
+    if [[ $(bash n-dice-x.sh 1 100) -le 40 ]]; then
+        hail
+    fi
+    if [[ ${wind_strength} -eq 4 ]]; then
+        if [[ $(bash n-dice.x.sh 1 100) -le 10 ]]; then
+            tornado
+        fi
+    fi
 }
 
 function sleet(){
@@ -114,8 +122,21 @@ function thundersnow(){
 }
 
 function snownado(){
-    precipitation_string="${precipitation_string}\n**This generates a snownado.** (Perception and Ranged Attacks, including Siege Weapons and Evocation Spells, near the snownado are impossible. Nearby creatures of size Huge or smaller must succeed on a DC 20 Strength check to avoid being sucked in.)"
+    precipitation_string="${precipitation_string}\n**This generates a snownado.** (Perception check and Ranged Attacks, including Siege Weapons and Evocation Spells, near the snownado are impossible. Nearby creatures of size Huge or smaller must succeed on a DC 20 Strength check to avoid being sucked in.)"
 }
+
+function tornado(){
+    precipitation_string="${precipitation_string}\n**This generates a tornado.** (Perception check and Ranged Attacks, including Siege Weapons and Evocation Spells, near the tornado are impossible. Nearby creatures of size Huge or smaller must succeed on a DC 20 Strength check to avoid being sucked in.)"
+}
+
+function hail(){
+    if [[ $(bash n-dice-x.sh 1 100) -le 5 ]]; then
+        precipitation_string="${precipitation_string}\n**Leading up to which there is an hour of heavy hail.** (-4 on sound-based Perception checks. Unsheltered creatures take 1d4 damage per minute.)"
+    else
+        precipitation_string="${precipitation_string}\n**Leading up to which there is an hour of hail.** (-4 on sound-based Perception checks.)"
+    fi
+}
+
 intensity=$(bash precipitation-intensity.sh ${1})
 frequency=$(bash precipitation-frequency.sh ${1})
 d6=$(bash n-dice-x.sh 1 6)
