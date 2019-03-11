@@ -10,8 +10,9 @@ else
     clouds=$(bash cloud-cover.sh)
     temp=$(bash temp.sh ${1} ${clouds})
     night_temp=$(( $temp - $(bash n-dice-x.sh 2 6) - 3))
+    wind=$(bash wind.sh)
 
-    precipitation_string=$(bash cloud-description.sh ${clouds})
+    precipitation_string="$(bash cloud-description.sh ${clouds})\n$(bash wind-string.sh ${wind})"
 fi
 
 temp_string="**The temperature is ${temp}℉, and drops to ${night_temp}℉ at night.**"
