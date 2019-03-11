@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-climate=$(cat ${1}.climate)
+climate=$(bash get-property.sh ${1} "climate")
 season=$(bash season.sh)
 case ${season} in
     WINTER) case ${climate} in

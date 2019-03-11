@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-climate=$(cat ${1}.climate)
+climate=$(bash get-property.sh ${1} "climate")
 
 if [[ -f "${1}.tempVariation" ]]; then
     d100=$(cat "$1.tempVariation")
@@ -77,6 +77,6 @@ case ${climate} in
 esac
 
 if ${new}; then
-    bash webhook.sh "Temperature range will last for ${delay} days." "Debug.url"
+    bash webhook.sh "Temperature range will last for ${delay} days." $(bash get-property.sh "Debug" "url")
     echo "rm -f ${1}.tempVariation" | at now +$(( ${delay} * 2 - 1 )) minutes
 fi

@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-elevation=$(cat ${1}.elevation)
+elevation=$(bash get-property.sh ${1} "elevation")
 if [[ ${elevation} == "HIGHLAND" ]]; then
     echo -1
 else
