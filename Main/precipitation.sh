@@ -46,13 +46,16 @@ function thunderstorm(){
     wind_strength=$(bash wind-thunderstorm.sh)
     wind_string=$(bash wind-string.sh ${wind_strength})
     time_string=$(bash time-string.sh ${1} ${2})
-    precipitation_string="**There is a thunderstorm ${time_string}.** (1/4 visibility. -6 penalty on Perception and Ranged Attacks. Extinguishes unprotected flames. )"
+    precipitation_string="**There is a thunderstorm ${time_string}.** (1/4 visibility. -6 penalty on Perception and Ranged Attacks. Extinguishes unprotected flames. Lightning strikes a random unsheltered creature every 10 minutes.)"
     if [[ $(bash n-dice-x.sh 1 100) -le 40 ]]; then
         hail
     fi
     if [[ ${wind_strength} -eq 4 ]]; then
         if [[ $(bash n-dice.x.sh 1 100) -le 10 ]]; then
             tornado
+        fi
+        if [[ ${temp} -gt 85 && $(bash n-dice.x.sh 1 100) -le 20 ]]; then
+            hurricane
         fi
     fi
 }
@@ -110,7 +113,7 @@ function thundersnow(){
     else
         snowstorm ${1} ${2}
     fi
-    precipitation_string="${precipitation_string}\n**It is accompanied by a thundersnow.** (Lightning strikes a random unsheltered creature every hour.)"
+    precipitation_string="${precipitation_string}\n**It is accompanied by a thundersnow.** (Lightning strikes a random unsheltered creature every 10 minutes.)"
     if [[ $(bash n-dice-x.sh 1 100) -le 40 ]]; then
         hail
     fi
@@ -127,6 +130,10 @@ function snownado(){
 
 function tornado(){
     precipitation_string="${precipitation_string}\n**This generates a tornado.** (Perception check and Ranged Attacks, including Siege Weapons and Evocation Spells, near the tornado are impossible. Nearby creatures of size Huge or smaller must succeed on a DC 20 Strength check to avoid being sucked in.)"
+}
+
+function hurricane(){
+    precipitation_string="${precipitation_string}\n**Signs of a hurricane can be seen on the horizon.**"
 }
 
 function hail(){
