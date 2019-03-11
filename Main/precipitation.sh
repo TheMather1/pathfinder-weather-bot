@@ -19,29 +19,25 @@ function heavyFog(){
 }
 
 function drizzle(){
-    wind_strength=$(bash wind.sh)
-    wind_string=$(bash wind-string.sh ${wind_strength})
+    wind_string=$(bash wind-generate.sh)
     time_string=$(bash time-string.sh ${1} ${2})
     precipitation_string="**There is a drizzle ${time_string}.** (3/4 visibility. -2 penalty on Perception. Extinguishes tiny unprotected flames.)"
 }
 
 function lightRain(){
-    wind_strength=$(bash wind.sh)
-    wind_string=$(bash wind-string.sh ${wind_strength})
+    wind_string=$(bash wind-generate.sh)
     time_string=$(bash time-string.sh ${1} ${2})
     precipitation_string="**There is light rain ${time_string}.** (3/4 visibility. -2 penalty on Perception and Ranged Attacks. Extinguishes unprotected flames.)"
 }
 
 function mediumRain(){
-    wind_strength=$(bash wind.sh)
-    wind_string=$(bash wind-string.sh ${wind_strength})
+    wind_string=$(bash wind-generate.sh)
     time_string=$(bash time-string.sh ${1} ${2})
     precipitation_string="**There is rain ${time_string}.** (1/2 visibility. -4 penalty on Perception and Ranged Attacks. Extinguishes unprotected flames.)"
 }
 
 function heavyRain(){
-    wind_strength=$(bash wind.sh)
-    wind_string=$(bash wind-string.sh ${wind_strength})
+    wind_string=$(bash wind-generate.sh)
     time_string=$(bash time-string.sh ${1} ${2})
     precipitation_string="**There is a rainstorm ${time_string}.** (1/4 visibility. -6 penalty on Perception and Ranged Attacks. Extinguishes unprotected flames. )"
 }
@@ -54,22 +50,19 @@ function thunderstorm(){
 }
 
 function sleet(){
-    wind_strength=$(bash wind.sh)
-    wind_string=$(bash wind-string.sh ${wind_strength})
+    wind_string=$(bash wind-generate.sh)
     time_string=$(bash time-string.sh ${1} ${2})
     precipitation_string="**There is sleet ${time_string}.** (3/4 visibility. -2 penalty on Perception and Ranged Attacks. 75% chance each hour to extinguish unprotected flames.)"
 }
 
 function lightSnow(){
-    wind_strength=$(bash wind.sh)
-    wind_string=$(bash wind-string.sh ${wind_strength})
+    wind_string=$(bash wind-generate.sh)
     time_string=$(bash time-string.sh ${1} ${2})
     precipitation_string="**There is light snowfall ${time_string}.** (3/4 visibility. -2 penalty on Perception and Ranged Attacks. 75% chance each hour to extinguish unprotected flames.)"
 }
 
 function mediumSnow(){
-    wind_strength=$(bash wind.sh)
-    wind_string=$(bash wind-string.sh ${wind_strength})
+    wind_string=$(bash wind-generate.sh)
     time_string=$(bash time-string.sh ${1} ${2})
     precipitation_string="**There is snowfall ${time_string}.** (1/2 visibility. -4 penalty on Perception and Ranged Attacks. Extinguishes unprotected flames.)"
 }
@@ -78,8 +71,7 @@ function heavySnow(){
     if [[ $(bash n-dice-x.sh 1 100) -le 10 ]]; then
         thundersnow
     else
-        wind_strength=$(bash wind.sh)
-        wind_string=$(bash wind-string.sh ${wind_strength})
+        wind_string=$(bash wind-generate.sh)
         if [[ ${wind_strength} -ge 3 &&  $(bash n-dice-x.sh 1 100) -le 40 ]]; then
             blizzard ${1} ${2}
         else
