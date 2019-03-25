@@ -6,7 +6,7 @@ forecastHook=$(grep "forecast_url" ${1} | cut -d '=' -f2)
 
 function season(){
 
-    date=$( date +%j )
+    date=$( date -d "+2 days" +%j )
     if [[ ${date#0} -lt 46 ]] || [[ ${date#0} -gt 320 ]]; then
         echo "WINTER"
     elif [[ ${date#0} -lt 137 ]]; then
@@ -654,7 +654,7 @@ function execute(){
     curl ${weatherHook} -d "content=$(echo -e ${tomorrowsWeather:="The bot was started today, please wait 2 days so the weather may catch up to the forecast."})"
     tomorrowsWeather=${newWeather:="The bot was started yesterday, please wait another day so the weather may catch up to the forecast."}
     weather
-    curl ${forecastHook} -d "content=$(echo -e "($(date --date='2 day' +'%d.%m.%Y')):\n${newWeather}")"
+    curl ${forecastHook} -d "content=$(echo -e "($(date -d "+2 days" +%d.%m.%Y)):\n${newWeather}")"
 }
 
 while true; do
