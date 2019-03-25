@@ -648,14 +648,13 @@ function weather(){
         windString
         newWeather="${clouds}\n${windString}\n${tempString}"
     fi
-    echo -e ${newWeather}
 }
 
 function execute(){
     curl ${weatherHook} -d "content=$(echo -e ${tomorrowsWeather:="The bot was started today, please wait 2 days so the weather may catch up to the forecast."})"
     tomorrowsWeather=${newWeather:="The bot was started yesterday, please wait another day so the weather may catch up to the forecast."}
     weather
-    curl ${forecastHook} -d "content=$(echo -e "($(date --date='2 day' +'%d%m%Y')):\n${newWeather}")"
+    curl ${forecastHook} -d "content=$(echo -e "($(date --date='2 day' +'%d.%m.%Y')):\n${newWeather}")"
 }
 
 while true; do
